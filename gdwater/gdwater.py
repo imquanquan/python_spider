@@ -20,7 +20,10 @@ for i in range(1,1253):
     doc = pq(browser.page_source)
     for each in doc('.mc a[href^="http"]').items():
         url = each.attr.href
-        title = each.text().replace(' ', '')
-        pdfkit.from_url(url,'%s.pdf'%(title))
+        title = each.text().replace(' ', '')[:35
+        try:
+            pdfkit.from_url(url,'%s.pdf'%(title))
+        except TypeError:
+            pass
         print(title)
         
