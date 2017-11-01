@@ -16,10 +16,10 @@ headers = {
         }
 
 now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-half_a_day_ago = (datetime.now() - timedelta(0.5)).strftime("%Y-%m-%d %H:%M:%S")
-date_list = datelist(half_a_day_ago, now, "6min")
+a_day_ago = (datetime.now() - timedelta(2/3)).strftime("%Y-%m-%d %H:%M:%S")
+date_list = datelist(a_day_ago, now, "6min")
 
-# 程序每天定时在晚上8点运行。爬每天早8点到晚8点的数据，雷达图间隔6分钟一张。
+# 程序每天定时在晚上8点运行。爬昨天晚8点到今天晚8点的数据，雷达图间隔6分钟一张。
 
 error = requests.get("http://i.weather.com.cn/i/product/pic/l/sevp_aoc_rdcp_sldas_ebref_az9200_l88_pi_20171020010000000.png", headers=headers).content
 
