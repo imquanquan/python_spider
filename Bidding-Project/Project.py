@@ -31,7 +31,7 @@ class Project():
     
     def save_exel(fiel_name, sheet_name):
         writer = pd.ExcelWriter(fiel_name)
-        pros_df.to_excel(writer, sheet_name)
+        Project.pros_df.to_excel(writer, sheet_name)
         writer.save()
             
 def post_and_get_html(base_url, data, code):
