@@ -12,11 +12,12 @@ class Project():
     pros_df = pd.DataFrame(columns=['项目名称', '项目日期', '项目金额', '项目地区'])
     pros_name_list = []
 
-    def __init__(self, pro_name, pro_date, pro_amount, pro_area):
+    def __init__(self, pro_name, pro_date, pro_amount, pro_area, pro_url = ''):
         self.pro_name = pro_name
         self.pro_date = pro_date
         self.pro_amount = pro_amount
         self.pro_area = pro_area
+        self.pro_url = pro_url
 
     def __str__(self):
         return '项目名称：%s\n项目地区：%s\n项目金额：%s\n项目日期：%s' % \
@@ -27,7 +28,16 @@ class Project():
             Project.pros_name_list.append(self.pro_name)
             Project.pros_df.loc[Project.pros_num] = [self.pro_name, self.pro_date, self.pro_amount, self.pro_area]
             Project.pros_num = Project.pros_num + 1
+    
+    def save_exel(fiel_name, sheet_name):
+        writer = pd.ExcelWriter(fiel_name)
+        pros_df.to_excel(writer, sheet_name)
+        writer.save()
             
 def post_and_get_html(base_url, data, code):
     url = base_url + urlencode(data, encoding = code)
     return requests.get(url).text
+
+def save_html(html, file_name):
+    with open(file_name, "w") as f:
+        f.write(html)
